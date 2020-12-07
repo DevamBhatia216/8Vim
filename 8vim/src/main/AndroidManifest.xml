@@ -41,5 +41,9 @@
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".ui.TouchTrailSettingsActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 </manifest>
