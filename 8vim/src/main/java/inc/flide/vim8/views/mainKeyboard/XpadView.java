@@ -194,10 +194,13 @@ public class XpadView extends View {
         float[] pathPos = new float[2];
         Paint typingTrailPaint = new Paint();
 
+        SharedPreferences sharedPreferences_thickness = getContext().getSharedPreferences(getContext().getString(R.string.basic_preference_file_name), Activity.MODE_PRIVATE);
+        int max_trail_radius = sharedPreferences_thickness.getInt(getContext().getString(R.string.storing_thickness_seekbar_value_in_sharedPreference),0);
+
         if (typingTrailPath != null) {
             final short steps = 150;
             final byte stepDistance = 5;
-            final byte maxTrailRadius = 14;
+            final byte maxTrailRadius = (byte) max_trail_radius;
             PathMeasure pathMeasure = new PathMeasure();
             pathMeasure.setPath(typingTrailPath, false);
             Random random = new Random();
@@ -222,6 +225,11 @@ public class XpadView extends View {
                             Color.TRANSPARENT,
                             Shader.TileMode.CLAMP));
 
+                    SharedPreferences sp_opacity_value = getContext().getSharedPreferences(getContext().getString(R.string.basic_preference_file_name), Activity.MODE_PRIVATE);
+                    int current_opacity_value = sp_opacity_value.getInt(getContext().getString(R.string.storing_opacity_seekbar_value_in_sharedPreference),0);
+
+                    typingTrailPaint.setAlpha(current_opacity_value);
+
                     canvas.drawCircle(x, y, trailRadius, typingTrailPaint);
                 }
             }
@@ -231,7 +239,7 @@ public class XpadView extends View {
 
     private int getTrailColor() {
         SharedPreferences sharedPreferences = this.getContext().getSharedPreferences(this.getContext().getString(R.string.basic_preference_file_name), Activity.MODE_PRIVATE);
-        int trailColor = sharedPreferences.getInt(this.getContext().getString(R.string.color_selection), Color.YELLOW);
+        int trailColor = sharedPreferences.getInt(this.getContext().getString(R.string.storing_colorCode_value_in_sharedPreference), Color.YELLOW);
         return trailColor;
     }
 
