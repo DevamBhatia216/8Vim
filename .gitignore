@@ -1,0 +1,14 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.idea/
+.DS_Store
+/build
+/captures
+
+/release
+
+Store Assets/
+Security files/
+/8vim/lint-report.html
